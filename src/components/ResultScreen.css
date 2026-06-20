@@ -1,0 +1,130 @@
+.result-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.result-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.result-type {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--theme-color, var(--primary-color));
+  margin-bottom: 8px;
+}
+
+.result-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.result-card {
+  background-color: var(--background-color);
+  border-radius: var(--radius-lg);
+  padding: 30px 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+  border-top: 5px solid var(--theme-color, var(--primary-color));
+}
+
+.result-description {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.features-list h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.features-list ul {
+  list-style: none;
+}
+
+.features-list li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.features-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--theme-color, var(--primary-color));
+  font-weight: bold;
+}
+
+.jobs-container {
+  background: rgba(var(--theme-color-rgb, 52, 152, 219), 0.1);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.jobs-container h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: var(--theme-color, var(--primary-color));
+}
+
+.jobs-list {
+  font-size: 1rem;
+  font-weight: 600;
+  word-break: keep-all;
+  line-height: 1.5;
+}
+
+.secondary-container {
+  background-color: var(--background-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.secondary-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.secondary-type {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.restart-button {
+  background-color: var(--text-primary);
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 320px;
+}

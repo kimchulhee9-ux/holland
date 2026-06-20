@@ -1,0 +1,124 @@
+.start-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+.title-container {
+  margin-bottom: 40px;
+  z-index: 10;
+}
+
+.title-container h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.creator-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.illustration {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shape {
+  position: absolute;
+  border-radius: var(--radius-md);
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 100px;
+  height: 100px;
+  background-color: #3498DB;
+  top: 15%;
+  left: 15%;
+  transform: rotate(15deg);
+}
+
+.shape-2 {
+  width: 90px;
+  height: 90px;
+  background-color: #2ECC71;
+  bottom: 15%;
+  right: 20%;
+  border-radius: 50%;
+  animation-delay: -2s;
+}
+
+.shape-3 {
+  width: 80px;
+  height: 80px;
+  background-color: #F1C40F;
+  top: 25%;
+  right: 15%;
+  transform: rotate(-15deg);
+  border-radius: 10px;
+  animation-delay: -4s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) scale(1) rotate(0deg); }
+  50% { transform: translateY(-15px) scale(1.05) rotate(5deg); }
+  100% { transform: translateY(0px) scale(1) rotate(0deg); }
+}
+
+.info {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 15px 30px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-sm);
+}
+
+.info p {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 5px 0;
+}
+
+.start-button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 18px 40px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+  transition: var(--transition);
+  width: 85%;
+  max-width: 320px;
+}
+
+.start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(52, 152, 219, 0.4);
+}
