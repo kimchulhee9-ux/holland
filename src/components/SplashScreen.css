@@ -1,0 +1,203 @@
+.splash-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 36px 24px 20px;
+  background: linear-gradient(180deg, #F4F6FB 0%, #E8EEF8 100%);
+  text-align: center;
+  position: relative;
+  user-select: none;
+}
+
+.splash-header {
+  z-index: 10;
+  margin-top: 10px;
+}
+
+.splash-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6C5CE7 0%, #8C7AE6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+.splash-subtitle {
+  font-size: 1.05rem;
+  color: #718096;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.splash-illustration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 220px;
+  margin: 16px 0;
+  z-index: 10;
+}
+
+.splash-illustration {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0 12px 30px rgba(108, 92, 231, 0.18), 0 4px 10px rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-color: #FEFDF9;
+}
+
+.splash-illustration:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(108, 92, 231, 0.24);
+}
+
+.passcode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 10;
+  margin-bottom: 12px;
+}
+
+.passcode-prompt {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #2D3748;
+  margin-bottom: 16px;
+  transition: color 0.3s ease;
+  min-height: 24px;
+}
+
+.passcode-prompt.error {
+  color: #E53E3E;
+}
+
+.passcode-prompt.success {
+  color: #38A169;
+}
+
+.passcode-dots {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #A29BFE;
+  background-color: transparent;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dot.filled {
+  background-color: #6C5CE7;
+  border-color: #6C5CE7;
+  transform: scale(1.15);
+  box-shadow: 0 0 10px rgba(108, 92, 231, 0.45);
+}
+
+.dot.success {
+  background-color: #38A169;
+  border-color: #38A169;
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(56, 161, 105, 0.6);
+}
+
+.dot.error {
+  background-color: #E53E3E;
+  border-color: #E53E3E;
+}
+
+.shake {
+  animation: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(4px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+  40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.keypad-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  color: #2D3748;
+  font-size: 1.45rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.keypad-btn:hover {
+  background: #FFFFFF;
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.keypad-btn:active {
+  background: #6C5CE7;
+  color: #FFFFFF;
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.keypad-btn.empty {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  pointer-events: none;
+}
+
+.keypad-btn.delete {
+  color: #E53E3E;
+  background: rgba(229, 62, 62, 0.1);
+  border: 1px solid rgba(229, 62, 62, 0.15);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.keypad-btn.delete:hover {
+  background: rgba(229, 62, 62, 0.18);
+  transform: scale(1.05);
+}
+
+.keypad-btn.delete:active {
+  background: #E53E3E;
+  color: #FFFFFF;
+  transform: scale(0.95);
+}
+
+.splash-footer {
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: #A0AEC0;
+  z-index: 10;
+}

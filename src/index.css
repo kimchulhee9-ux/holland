@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --primary-color: #3498DB;
-  --secondary-color: #2980B9;
+  --primary-color: #6C5CE7;
+  --secondary-color: #A29BFE;
   --background-color: #F8F9FA;
   --text-primary: #2C3E50;
   --text-secondary: #7F8C8D;
@@ -53,4 +53,11 @@ button {
 @keyframes slideOutLeft {
   from { opacity: 1; transform: translateX(0); }
   to { opacity: 0; transform: translateX(-30px); }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(4px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+  40%, 60% { transform: translate3d(6px, 0, 0); }
 }

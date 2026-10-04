@@ -2,52 +2,174 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 40px 20px;
+  padding: 30px 20px;
   overflow-y: auto;
 }
 
+/* 구글 스프레드시트 상태 바 */
+.submission-status-bar {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  animation: 0.3s ease-out forwards slideDown;
+  overflow: hidden;
+}
+
+.submission-status-bar.submitting {
+  color: var(--text-secondary);
+  background-color: #F1F2F6;
+  border: 1px solid #CED6E0;
+}
+
+.submission-status-bar.success {
+  color: #087F5B;
+  background-color: #E6FCF5;
+  border: 1px solid #96F2D7;
+}
+
+.submission-status-bar.error {
+  color: #E03131;
+  background-color: #FFF5F5;
+  border: 1px solid #FFC9C9;
+}
+
+.status-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.status-content.error {
+  justify-content: space-between;
+}
+
+.status-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: var(--text-secondary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.retry-button-small {
+  background-color: #FA5252;
+  color: white;
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.retry-button-small:hover {
+  background-color: #E03131;
+}
+
+/* 결과 헤더 */
 .result-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .result-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .result-type {
   font-size: 3rem;
   font-weight: 800;
   color: var(--theme-color, var(--primary-color));
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
 }
 
 .result-title {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 700;
+  margin-bottom: 16px;
 }
 
+/* 점수 배지 */
+.score-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.score-badge {
+  background-color: #EDF2F7;
+  color: #4A5568;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  transition: all 0.2s ease;
+}
+
+.score-badge strong {
+  color: #2D3748;
+}
+
+.score-badge.primary-badge {
+  background-color: #6C5CE7;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(108, 92, 231, 0.3);
+}
+
+.score-badge.primary-badge strong {
+  color: #FFFFFF;
+}
+
+.score-badge.secondary-badge {
+  background-color: #A29BFE;
+  color: #FFFFFF;
+}
+
+.score-badge.secondary-badge strong {
+  color: #FFFFFF;
+}
+
+/* 결과 카드 */
 .result-card {
   background-color: var(--background-color);
   border-radius: var(--radius-lg);
-  padding: 30px 20px;
+  padding: 24px 20px;
   margin-bottom: 20px;
   box-shadow: var(--shadow-sm);
   border-top: 5px solid var(--theme-color, var(--primary-color));
 }
 
 .result-description {
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.6;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
 }
 
 .features-list h3 {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
+  font-size: 1.15rem;
+  margin-bottom: 12px;
 }
 
 .features-list ul {
@@ -56,8 +178,8 @@
 
 .features-list li {
   position: relative;
-  padding-left: 24px;
-  margin-bottom: 12px;
+  padding-left: 22px;
+  margin-bottom: 10px;
   font-size: 0.95rem;
   color: var(--text-secondary);
 }
@@ -71,21 +193,21 @@
 }
 
 .jobs-container {
-  background: rgba(var(--theme-color-rgb, 52, 152, 219), 0.1);
+  background: rgba(108, 92, 231, 0.08);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 18px;
   margin-bottom: 20px;
   text-align: center;
 }
 
 .jobs-container h3 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
   color: var(--theme-color, var(--primary-color));
 }
 
 .jobs-list {
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 600;
   word-break: keep-all;
   line-height: 1.5;
@@ -94,20 +216,20 @@
 .secondary-container {
   background-color: var(--background-color);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 16px;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .secondary-label {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-secondary);
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .secondary-type {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
 }
 
@@ -120,11 +242,17 @@
 .restart-button {
   background-color: var(--text-primary);
   color: var(--white);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   padding: 16px 40px;
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-md);
   width: 100%;
   max-width: 320px;
+  transition: var(--transition);
+}
+
+.restart-button:hover {
+  background-color: #1A202C;
+  transform: translateY(-2px);
 }
