@@ -3,11 +3,13 @@ import SplashScreen from './components/SplashScreen';
 import StartScreen from './components/StartScreen';
 import QuestionScreen from './components/QuestionScreen';
 import ResultScreen from './components/ResultScreen';
+import { questions, seniorQuestions } from './data/questions';
 import './App.css';
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash'); // 'splash' | 'start' | 'question' | 'result'
   const [userName, setUserName] = useState('');
+  const [group, setGroup] = useState(''); // 'student' | 'parent' | 'senior' (시작 화면에서 선택)
   const [scores, setScores] = useState({ R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 });
   const [primaryType, setPrimaryType] = useState('');
   const [secondaryType, setSecondaryType] = useState('');
@@ -18,13 +20,17 @@ function App() {
   };
 
   // 이름 입력 후 검사 시작 시
-  const handleStartTest = (name) => {
+  // 시니어는 30문항, 학생·학부모는 60문항
+  const activeQuestions = group === 'senior' ? seniorQuestions : questions;
+
+  const handleStartTest = (name, selectedGroup) => {
     setUserName(name);
+    setGroup(selectedGroup);
     setScores({ R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 });
     setCurrentScreen('question');
   };
 
-  // 60문항 완료 시 결과 계산
+  // 모든 문항 완료 시 결과 계산
   const handleTestComplete = (finalScores) => {
     const sortedTypes = Object.entries(finalScores).sort((a, b) => b[1] - a[1]);
 
@@ -36,6 +42,7 @@ function App() {
 
   // 다시 검사하기
   const restartTest = () => {
+    setGroup('');
     setCurrentScreen('start');
   };
 
@@ -48,6 +55,7 @@ function App() {
           onComplete={handleTestComplete}
           scores={scores}
           setScores={setScores}
+          questions={activeQuestions}
         />
       )}
       {currentScreen === 'result' && (
@@ -56,6 +64,7 @@ function App() {
           secondary={secondaryType}
           scores={scores}
           userName={userName}
+          group={group}
           onRestart={restartTest}
         />
       )}

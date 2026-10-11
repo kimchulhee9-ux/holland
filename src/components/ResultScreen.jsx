@@ -1,11 +1,16 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { results } from '../data/results';
 import { CONFIG } from '../config';
+import { groupContent } from '../data/groupContent';
+
+// 유형 이름에서 짧은 우리말 이름만 꺼냅니다. 예: '현실형 (Realistic)' → '현실'
+const shortName = (data, code) => (data?.title ? data.title.split('형')[0] : code);
 import './ResultScreen.css';
 
-function ResultScreen({ primary, secondary, scores, userName, onRestart }) {
+function ResultScreen({ primary, secondary, scores, userName, group = 'student', onRestart }) {
   const resultData = results[primary];
   const secondaryData = results[secondary];
+  const extra = groupContent[primary] || {};
 
   const [submissionStatus, setSubmissionStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
 
@@ -47,7 +52,11 @@ function ResultScreen({ primary, secondary, scores, userName, onRestart }) {
     }
   }, [userName, primary, secondary, scores, resultData, secondaryData]);
 
+  // 결과는 한 번만 자동 전송합니다. (개발 모드에서 화면이 두 번 그려져도 중복 저장되지 않도록)
+  const hasSubmittedRef = useRef(false);
   useEffect(() => {
+    if (hasSubmittedRef.current) return;
+    hasSubmittedRef.current = true;
     submitToGoogleSheets();
   }, [submitToGoogleSheets]);
 
@@ -57,12 +66,12 @@ function ResultScreen({ primary, secondary, scores, userName, onRestart }) {
 
   const scoreList = scores
     ? [
-        { label: 'R (현실형)', key: 'R', val: scores.R ?? 0 },
-        { label: 'I (탐구형)', key: 'I', val: scores.I ?? 0 },
-        { label: 'A (예술형)', key: 'A', val: scores.A ?? 0 },
-        { label: 'S (사회형)', key: 'S', val: scores.S ?? 0 },
-        { label: 'E (진취형)', key: 'E', val: scores.E ?? 0 },
-        { label: 'C (관습형)', key: 'C', val: scores.C ?? 0 }
+        { label: '현실', key: 'R', val: scores.R ?? 0 },
+        { label: '탐구', key: 'I', val: scores.I ?? 0 },
+        { label: '예술', key: 'A', val: scores.A ?? 0 },
+        { label: '사회', key: 'S', val: scores.S ?? 0 },
+        { label: '진취', key: 'E', val: scores.E ?? 0 },
+        { label: '관습', key: 'C', val: scores.C ?? 0 }
       ]
     : [];
 
@@ -101,10 +110,12 @@ function ResultScreen({ primary, secondary, scores, userName, onRestart }) {
 
       <div className="result-header">
         <p className="result-subtitle">
-          {userName ? `${userName}님의 핵심 직업 적성은` : '당신의 핵심 직업 적성은'}
+          {userName ? `${userName}님의 적성은` : '당신의 적성은'}
         </p>
-        <h1 className="result-type">{primary}{secondary}형</h1>
-        <h2 className="result-title">{resultData.title}</h2>
+        <h1 className="result-type result-type-name">
+          {shortName(resultData, primary)}·{shortName(secondaryData, secondary)}형
+        </h1>
+        <p className="result-code">{primary}{secondary}</p>
 
         {/* 세부 점수 배지 목록 */}
         {scoreList.length > 0 && (
@@ -116,7 +127,7 @@ function ResultScreen({ primary, secondary, scores, userName, onRestart }) {
                   item.key === primary ? 'primary-badge' : item.key === secondary ? 'secondary-badge' : ''
                 }`}
               >
-                {item.key} <strong>{item.val}</strong>
+                {item.label}({item.key}) <strong>{item.val}</strong>
               </span>
             ))}
           </div>
@@ -127,7 +138,7 @@ function ResultScreen({ primary, secondary, scores, userName, onRestart }) {
         <p className="result-description">{resultData.description}</p>
 
         <div className="features-list">
-          <h3>✨ 주요 특징</h3>
+          <h3>✨ {resultData.title}의 주요 특징</h3>
           <ul>
             {resultData.features.map((feature, index) => (
               <li key={index}>{feature}</li>
@@ -136,15 +147,54 @@ function ResultScreen({ primary, secondary, scores, userName, onRestart }) {
         </div>
       </div>
 
-      <div className="jobs-container">
-        <h3>💼 추천 직업 분야</h3>
-        <p className="jobs-list">{resultData.jobs}</p>
-      </div>
+      {group === 'student' && (
+        <div className="jobs-container">
+          <h3>💼 추천 직업 분야</h3>
+          <p className="jobs-list">{resultData.jobs}</p>
+        </div>
+      )}
+
+      {group === 'parent' && extra.parentStrengths && (
+        <div className="group-section">
+          <h3>👨‍👩‍👧 부모로서 나의 강점</h3>
+          <ul>
+            {extra.parentStrengths.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+          <h3>💬 자녀 진로 대화 팁</h3>
+          <ul>
+            {extra.parentTips.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {group === 'senior' && extra.seniorActivities && (
+        <>
+          <div className="group-section">
+            <h3>🌿 인생 2막 추천 활동</h3>
+            <div className="activity-grid">
+              {extra.seniorActivities.map((act, index) => (
+                <div key={index} className="activity-card">
+                  <span className="activity-icon">{act.icon}</span>
+                  <span className="activity-name">{act.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="jobs-container">
+            <h3>🤝 재능 나눔·일자리 분야</h3>
+            <p className="jobs-list">{extra.seniorTalent}</p>
+          </div>
+        </>
+      )}
 
       <div className="secondary-container">
         <p className="secondary-label">두 번째로 높은 성향</p>
         <p className="secondary-type">
-          {secondary}형 - {secondaryData?.title || ''}
+          {secondaryData?.title || ''} ({secondary})
         </p>
       </div>
 

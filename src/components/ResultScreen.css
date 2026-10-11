@@ -256,3 +256,89 @@
   background-color: #1A202C;
   transform: translateY(-2px);
 }
+
+/* 적성알아보기: 유형 이름(한글) + 영문 표기 */
+.result-type.result-type-name {
+  font-size: 2.2rem;
+  line-height: 1.25;
+  word-break: keep-all;
+}
+
+.result-code {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  margin-right: -0.35em;
+  color: var(--theme-color, var(--primary-color));
+  opacity: 0.85;
+  margin-bottom: 14px;
+}
+
+/* 그룹별 내용 (학부모 / 시니어) */
+.group-section {
+  background-color: var(--background-color);
+  border-radius: var(--radius-md);
+  padding: 20px 18px;
+  margin-bottom: 20px;
+  border-left: 5px solid var(--theme-color, var(--primary-color));
+  text-align: left;
+}
+
+.group-section h3 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.group-section ul {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.group-section ul:last-child {
+  margin-bottom: 0;
+}
+
+.group-section li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-break: keep-all;
+  color: var(--text-secondary);
+}
+
+.group-section li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  font-size: 0.7rem;
+  top: 4px;
+  color: var(--theme-color, var(--primary-color));
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.activity-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.activity-icon {
+  font-size: 1.5rem;
+}
+
+.activity-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  word-break: keep-all;
+}

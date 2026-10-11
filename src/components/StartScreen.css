@@ -172,3 +172,49 @@
   transform: translateY(-2px);
   box-shadow: 0 14px 24px rgba(108, 92, 231, 0.4);
 }
+
+/* 그룹 선택 (학생 / 학부모 / 시니어) */
+.group-select-container {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.group-buttons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.group-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 6px;
+  border: 2px solid #e0dcfb;
+  border-radius: var(--radius-md, 16px);
+  background-color: #fff;
+  color: var(--text-primary, #2C3E50);
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.group-button .group-icon {
+  font-size: 1.6rem;
+}
+
+.group-button.selected {
+  border-color: var(--primary-color, #6C5CE7);
+  background-color: var(--primary-color, #6C5CE7);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(108, 92, 231, 0.25);
+}

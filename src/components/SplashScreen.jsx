@@ -52,7 +52,7 @@ function SplashScreen({ onUnlock }) {
   return (
     <div className="splash-screen fade-in">
       <div className="splash-header">
-        <h1 className="splash-title">간편 Holland</h1>
+        <h1 className="splash-title">적성알아보기</h1>
         <p className="splash-subtitle">- Chulhee -</p>
       </div>
 
@@ -60,7 +60,7 @@ function SplashScreen({ onUnlock }) {
         <img
           src={splashHero}
           className="splash-illustration"
-          alt="Holland Career Aptitude Illustration"
+          alt="적성알아보기"
         />
       </div>
 

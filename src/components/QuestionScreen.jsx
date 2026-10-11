@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { questions, shuffleQuestions } from '../data/questions';
+import { questions as defaultQuestions, shuffleQuestions } from '../data/questions';
 import './QuestionScreen.css';
 
-function QuestionScreen({ onComplete, scores, setScores }) {
+function QuestionScreen({ onComplete, scores, setScores, questions = defaultQuestions }) {
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animationClass, setAnimationClass] = useState('slide-in-right');
@@ -10,7 +10,7 @@ function QuestionScreen({ onComplete, scores, setScores }) {
   useEffect(() => {
     // Shuffle questions on mount
     setShuffledQuestions(shuffleQuestions(questions));
-  }, []);
+  }, [questions]);
 
   if (shuffledQuestions.length === 0) return null;
 
