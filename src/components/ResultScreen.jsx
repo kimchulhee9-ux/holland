@@ -191,11 +191,28 @@ function ResultScreen({ primary, secondary, scores, userName, group = 'student',
         </>
       )}
 
+      <a
+        className="detail-button"
+        href={`${import.meta.env.BASE_URL}guide/${primary}.html`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📖 내 유형 자세히 보기 ({resultData.title.split(' ')[0]})
+      </a>
+
       <div className="secondary-container">
         <p className="secondary-label">두 번째로 높은 성향</p>
         <p className="secondary-type">
           {secondaryData?.title || ''} ({secondary})
         </p>
+        <a
+          className="detail-link"
+          href={`${import.meta.env.BASE_URL}guide/${secondary}.html`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          이 유형도 자세히 보기 →
+        </a>
       </div>
 
       <div className="action-buttons">

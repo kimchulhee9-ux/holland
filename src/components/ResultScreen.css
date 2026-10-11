@@ -342,3 +342,27 @@
   font-weight: 700;
   word-break: keep-all;
 }
+
+/* 내 유형 자세히 보기 */
+.detail-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--theme-color, var(--primary-color));
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 16px 20px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.detail-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--theme-color, var(--primary-color));
+  text-decoration: none;
+}

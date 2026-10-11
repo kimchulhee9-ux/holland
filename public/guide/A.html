@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>적성알아보기 · 예술형(A) 안내</title>
+<style>
+  :root {
+    --c: #9B59B6;
+    --soft: #F4ECF8;
+    --ink: #1f2a44;
+    --muted: #5d6778;
+    --line: #e6e8ee;
+    --bg: #f6f7fb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    word-break: keep-all;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 760px; margin: 0 auto; padding: 24px 16px 40px; }
+
+  .hero {
+    background: var(--c);
+    color: #fff;
+    border-radius: 24px;
+    padding: 28px 24px 26px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .badge {
+    flex: none;
+    width: 92px; height: 92px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    border: 3px solid rgba(255,255,255,0.6);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px; font-weight: 800; letter-spacing: -1px;
+  }
+  .eyebrow { font-size: 14px; opacity: .85; font-weight: 600; }
+  .hero h1 { font-size: 34px; line-height: 1.2; font-weight: 800; margin: 2px 0 2px; }
+  .hero h1 small { font-size: 17px; font-weight: 600; opacity: .85; margin-left: 6px; }
+  .hero .tag { font-size: 16px; opacity: .95; margin-top: 6px; }
+  .alias { font-size: 13px; opacity: .85; margin-top: 4px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 18px 18px 16px;
+  }
+  .card.full { grid-column: 1 / -1; }
+  .card h2 {
+    font-size: 16px; font-weight: 800; color: var(--c);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .card h2 .ic { font-size: 19px; }
+  .card p { font-size: 15.5px; color: var(--ink); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    background: var(--soft);
+    color: var(--ink);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 14.5px; font-weight: 600;
+  }
+  .card.jobs { border: 2px solid var(--c); }
+  .card.jobs .chip { background: var(--c); color: #fff; }
+
+  ul.ability { list-style: none; display: grid; gap: 8px; }
+  ul.ability li {
+    position: relative; padding-left: 20px; font-size: 15.5px;
+  }
+  ul.ability li::before {
+    content: "▶"; position: absolute; left: 0; top: 1px;
+    font-size: 11px; color: var(--c);
+  }
+
+  .note {
+    margin-top: 16px; font-size: 13.5px; color: var(--muted);
+    background: #fff; border: 1px dashed var(--line); border-radius: 14px; padding: 14px 16px;
+  }
+  .footer { text-align: center; color: var(--muted); font-size: 12.5px; margin-top: 18px; }
+  .typenav { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 14px; }
+  .typenav a {
+    text-decoration: none; font-weight: 800; font-size: 14px; color: var(--muted);
+    background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px;
+  }
+  .typenav a.on { background: var(--c); color: #fff; border-color: var(--c); }
+  .applink { display: block; text-align: center; margin-top: 10px; color: var(--muted); font-size: 14px; }
+  .print-btn {
+    display: block; margin: 18px auto 0; border: none; cursor: pointer;
+    background: var(--ink); color: #fff; font: inherit; font-weight: 700; font-size: 15px;
+    padding: 12px 26px; border-radius: 999px;
+  }
+
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    .hero { flex-direction: column; text-align: center; padding: 24px 18px; }
+    .hero h1 { font-size: 30px; }
+  }
+  @media print {
+    @page { size: A4; margin: 12mm; }
+    body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { padding: 0; max-width: none; }
+    .typenav { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 14px; }
+  .typenav a {
+    text-decoration: none; font-weight: 800; font-size: 14px; color: var(--muted);
+    background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px;
+  }
+  .typenav a.on { background: var(--c); color: #fff; border-color: var(--c); }
+  .applink { display: block; text-align: center; margin-top: 10px; color: var(--muted); font-size: 14px; }
+  .print-btn { display: none; }
+    .card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="typenav"><a href="R.html" class="">R 현실형</a><a href="I.html" class="">I 탐구형</a><a href="A.html" class="on">A 예술형</a><a href="S.html" class="">S 사회형</a><a href="E.html" class="">E 기업형</a><a href="C.html" class="">C 관습형</a></nav>
+  <header class="hero">
+    <div class="badge">A</div>
+    <div>
+      <p class="eyebrow">적성알아보기 · 나의 적성 유형</p>
+      <h1>예술형<small>Artistic</small></h1>
+      <p class="tag">상상하고 표현하며 나만의 색깔을 만들어 가는 사람</p>
+      
+    </div>
+  </header>
+
+  <section class="grid">
+    <div class="card full">
+      <h2><span class="ic">🙂</span>인성 특성</h2>
+      <div class="chips"><span class="chip">상상력이 풍부</span><span class="chip">감수성이 강하며</span><span class="chip">자유분방</span><span class="chip">개방적</span><span class="chip">감정풍부</span><span class="chip">독창적</span><span class="chip">개성이 강하고</span><span class="chip">협동적이지 않다</span></div>
+    </div>
+
+    <div class="card full">
+      <h2><span class="ic">💡</span>좋아하는 활동 (직업활동 선호)</h2>
+      <p>예술적 창조와 표현, 변화와 다양성을 좋아하고, 틀에 박힌 것을 싫어한다. 모호하고 자유롭고 상징적인 활동들을 좋아하지만, 명쾌하고 체계적이고 구조화된 활동에는 흥미가 없다.</p>
+    </div>
+
+    <div class="card full">
+      <h2><span class="ic">💪</span>잘하는 능력과 보완할 점 (지성·유능감)</h2>
+      <ul class="ability"><li>미술적·음악적 능력은 있으나 사무적 기술은 부족</li><li>상징적·자유적·비체계적 능력은 있으나 체계적·순서적 능력은 부족</li></ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="ic">💎</span>중요하게 여기는 가치</h2>
+      <div class="chips"><span class="chip">예술</span><span class="chip">창의성</span><span class="chip">재능</span><span class="chip">변화</span><span class="chip">자유</span><span class="chip">개성</span></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="ic">🎯</span>삶의 목표</h2>
+      <p>예술계의 유명인, 독창적인 작품 활동</p>
+    </div>
+
+    <div class="card full">
+      <h2><span class="ic">🎓</span>추천 전공</h2>
+      <div class="chips"><span class="chip">예술대학</span><span class="chip">음악</span><span class="chip">미술</span><span class="chip">도자기</span><span class="chip">공예과</span><span class="chip">연극영화과</span><span class="chip">국문학과</span><span class="chip">영문학과</span><span class="chip">무용과</span></div>
+    </div>
+
+    <div class="card full jobs">
+      <h2><span class="ic">💼</span>추천 직업</h2>
+      <div class="chips"><span class="chip">예술가</span><span class="chip">시인</span><span class="chip">소설가</span><span class="chip">디자이너</span><span class="chip">극작가</span><span class="chip">연극인</span><span class="chip">미술가</span><span class="chip">음악평론가</span><span class="chip">만화가</span></div>
+    </div>
+  </section>
+
+  <p class="note">
+    적성 유형은 나를 이해하는 하나의 참고 자료입니다. 가장 높게 나온 유형과 두 번째 유형을 함께 살펴보면 나에게 맞는 진로를 더 잘 찾을 수 있어요.
+    부족하다고 나온 능력도 경험과 노력으로 얼마든지 키울 수 있습니다.
+  </p>
+
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄하기 / PDF로 저장</button>
+  <a class="applink" href="../">← 적성알아보기 검사하러 가기</a>
+  <p class="footer">적성알아보기 · © 2026 Chulhee</p>
+</div>
+</body>
+</html>
